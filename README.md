@@ -1,5 +1,9 @@
 # Random Fun
 
+## Update
+
+An earlier version of this tool erroneously used the [random.org] sequence generator API rather than the integers API, getting a random permutation of all numbers in the range [0, 255] rather than 16 randomly chosen numbers from that range. This caused the program to use much more of the user's randomness quota than documented.
+
 ## Setup
 
 You will need `cargo` and `rustc` installed. You can get them [here](https://www.rust-lang.org/en-US/install.html) using the `rustup` tool.

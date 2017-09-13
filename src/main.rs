@@ -19,17 +19,17 @@ fn main() {
     let connector = HttpsConnector::new(ssl);
     let client = Client::with_connector(connector);
     // get 16x 8-bit integers, for 128 bits of randomness in total
-    let url = "https://www.random.org/sequences/?num=128&min=0&max=255&col=1&format=plain&rnd=new";
+    let url = "https://www.random.org/integers/?base=10&num=16&min=0&max=255&col=1&format=plain&rnd=new";
     let mut response = client.get(url).send().unwrap();
     let mut seed_string = String::new();
     // fills string with numbers, separated by newlines
     response.read_to_string(&mut seed_string).unwrap();
-    let seed = string_to_bytes(seed_string);
+    let seed = string_to_bytes(&seed_string);
 
     // wants to be seeded with usize
     let mut rng = StdRng::from_seed(seed.as_slice());
     // w * h * 3
-    let mut bytes = [0u8; 49152];
+    let mut bytes = [0u8; 49_152];
 
     rng.fill_bytes(&mut bytes);
     let mut file = File::create(filename).unwrap();
@@ -37,7 +37,7 @@ fn main() {
     file.write_all(&bytes).unwrap();
 }
 
-fn string_to_bytes(s: String) -> Vec<usize> {
+fn string_to_bytes(s: &str) -> Vec<usize> {
     let mut bytes = vec![];
 
     let mut cur = String::new();
