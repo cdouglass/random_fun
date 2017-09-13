@@ -5,3 +5,5 @@ authors = ["Cathy Douglass <cdouglass256@gmail.com>"]
 
 [dependencies]
 rand = "0.3"
+hyper = "0.10.13"
+hyper-native-tls = "0.2.4"
