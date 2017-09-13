@@ -2,7 +2,7 @@
 
 ## Update
 
-An earlier version of this tool erroneously used the [random.org] sequence generator API rather than the integers API, getting a random permutation of all numbers in the range [0, 255] rather than 16 randomly chosen numbers from that range. This caused the program to use much more of the user's randomness quota than documented.
+An earlier version of this tool erroneously used the [random.org](random.org) sequence generator API rather than the integers API, getting a random permutation of all numbers in the range [0, 255] rather than 16 randomly chosen numbers from that range. This caused the program to use much more of the user's randomness quota than documented.
 
 ## Setup
 
@@ -28,6 +28,6 @@ The seed consists of 16 bytes (128 bits of randomness) obtained from the random.
 
 ## Not implemented (yet)
 * Any sort of error handling at all - if a request fails, the program will `panic!()`. However, the worst case here is that the program will quit with an unhelpful error message and fail to write the image file. Rust's memory safety guarantees continue to hold.
-* Checking random.org quota status. Since this program requests only small quantities of randomness at a time and uses a PRNG to stretch out its supply of entropy, we're not likely to hit the quota with reasonable usage. You would need to run it over 7,000 times in one day to use up your IP address's quota.
-* Including user's email address in user agent (good manners, so that if I made a mistake and the program misbehaves, random.org can let me know)
+* Checking [random.org](random.org) quota status. Since this program requests only small quantities of randomness at a time and uses a PRNG to stretch out its supply of entropy, we're not likely to hit the quota with reasonable usage. You would need to run it over 7,000 times in one day to use up your IP address's quota.
+* Including user's email address in user agent (good manners, so that if I made a mistake and the program misbehaves, [random.org](random.org) can let you know)
 * CLI flags to choose output file name, image size, or amount of entropy to require
