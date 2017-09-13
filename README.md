@@ -1,10 +1,10 @@
-#Random Fun
+# Random Fun
 
-##Setup
+## Setup
 
 You will need `cargo` and `rustc` installed. You can get them [here](https://www.rust-lang.org/en-US/install.html) using the `rustup` tool.
 
-##Usage
+## Usage
 
 Clone this repository and navigate to this directory in a terminal.
 
@@ -12,9 +12,9 @@ When you run
 ```
 $ cargo run
 ```
-a bitmap file named `hello.ppm` will be created in your current directory.
+a random 128x128-pixel RGB bitmap file, `hello.ppm`, will be created in your current directory.
 
-##General information
+## General information
 
 The image is populated by a manually seeded PRNG that uses the ISAAC algorithm. This is *probably* cryptographically secure, but don't bet your life on it. From the `rand` crate [documentation](https://docs.rs/rand/0.3.16/rand/isaac/struct.IsaacRng.html):
 
@@ -22,8 +22,8 @@ The image is populated by a manually seeded PRNG that uses the ISAAC algorithm. 
 
 The seed consists of 16 bytes (128 bits of randomness) obtained from the random.org HTTP API.
 
-##Not implemented (yet)
-* Any sort of error handling at all
-* Checking random.org quota status (but as this uses a CSPRNG to use entropy efficiently, we're not likely to hit the quota with reasonable usage)
+## Not implemented (yet)
+* Any sort of error handling at all - if a request fails, the program will `panic!()`. However, the worst case here is that the program will quit with an unhelpful error message and fail to write the image file. Rust's memory safety guarantees continue to hold.
+* Checking random.org quota status. Since this program requests only small quantities of randomness at a time and uses a PRNG to stretch out its supply of entropy, we're not likely to hit the quota with reasonable usage. You would need to run it over 7,000 times in one day to use up your IP address's quota.
 * Including user's email address in user agent (good manners, so that if I made a mistake and the program misbehaves, random.org can let me know)
-* CLI flags to choose file name, image size, or amount of entropy to require
+* CLI flags to choose output file name, image size, or amount of entropy to require
